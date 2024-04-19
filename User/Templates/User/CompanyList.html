@@ -1,0 +1,51 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companylist</title>
+</head>
+<body>
+    <body>
+        <br><br><br><br><br><br>
+        <form method="post" enctype="multipart/form-data"></form>
+        {% for i in data %}
+        <div class="container-fluid d-bg-image">
+            <div class="d-profile">
+                <table align="center" style="color: black;" cellpadding="10px" class="d-card">
+                    <tr>
+                        <td colspan="2" align="center"><img src="{{i.cmp_photo.url}}" alt="" width="150" height="150"></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{i.cmp_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>{{i.cmp_contact}}</td>
+                    </tr>
+                    <tr>
+                        <td>Place</td>
+                        <td>{{i.place.place_name}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <a class="d-card-button" href="{% url 'User:request' i.id %}">Send Request</a>
+                        </td>
+                        </tr>
+                    
+                </table>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </body>
+    
+    </html>     
+    
+    {% endblock content %}

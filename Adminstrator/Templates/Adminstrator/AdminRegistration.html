@@ -1,0 +1,71 @@
+{% extends 'Adminstrator/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <table cellpading="10" cellspacing="0" border="2" align="center" >
+        <tr>
+        <td>Name</td>
+        <td><input type="name" name="txtname" required></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="tel" name="txtcontact" required ></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="Email" name="txtemail" required ></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="txtpassword" required ></td>
+        </tr>
+        <tr>
+                
+            <td colspan="2" align="center">
+                <input type="submit" name="btnsubmit" value="Save">
+                <input type="reset" name="btncancel" value="Cancel">
+            </td>
+            </tr>
+        </table>
+        </form>
+            <table border="1" align="center" cellpadding="10">
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                {% for i in data %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.AdminRegistration_name}}</td>
+                    <td>{{i.AdminRegistration_contact}}</td>
+                    <td>{{i.AdminRegistration_email}}</td>
+                    <td>{{i.AdminRegistration_password}}</td>
+                    <td><a href="{% url 'Adminstrator:delAdminRegistration' i.id %}">Delete</a>
+                        <a href="{% url 'Adminstrator:AdminRegistrationupdate' i.id %}">Edit</a> 
+                    </td>   
+                </tr>
+                {% endfor %}
+        
+    </table>
+</body>
+</html>
+
+{% endblock content %}

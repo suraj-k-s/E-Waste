@@ -1,0 +1,38 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <form method="POST">
+        {% csrf_token %}
+        <h1 align="center">Complaint</h1>
+        <table align="center" cellpadding="10" border="2">
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="txttitle"  required ></td>
+            </tr> 
+            <tr>
+                <td>Details</td>
+                <td><input type="text" name="txtdetails"  required ></td>
+            </tr> 
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="submit">
+                    <input type="reset" name="btncancel" value="cancel">
+                    
+                </td>
+            </tr> 
+</table>
+</body>
+</html>
+
+{% endblock content %}

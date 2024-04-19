@@ -1,0 +1,71 @@
+{% extends 'Adminstrator/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ewaste</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 align="center" >Ewaste</h1>
+        <table align="center" cellpadding="10" border="2">
+            <tr>
+                <td >Ewaste Name</td>
+                <td><input type="text" name="txtname" placeholder="Enter Ewaste" required ></td>
+              </tr>
+              <tr>
+                      <td>Details</td>
+                     <td><input type="name" name="txtdetails" required></td>
+                     </tr>
+                     <tr>
+                            <td>Price</td>
+                            <td><input type="name" name="txtprice" required></td>
+                            </tr>
+                            <tr>
+                                   <td>Image</td>
+                                   <td><input type="file" name="fileImage" required></td>
+                                   </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Save">
+                    <input type="reset" name="btncancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Ewaste</th>
+            <th>Details</th>
+            <th>Price</th>
+            <th>Photo</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.ewaste_name}}</td>
+            <td>{{i.ewaste_details}}</td>
+            <td>{{i.ewaste_price}}</td>
+            <td><img src="{{i.ewaste_photo.url}}" width="150" height="150" alt=""></td>
+            <td><a href="{% url 'Adminstrator:delewaste' i.id %}">Delete</a> 
+                <a href="{% url 'Adminstrator:ewasteupdate' i.id %}">Edit</a> </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
+
+
+{% endblock content %}

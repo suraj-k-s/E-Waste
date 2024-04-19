@@ -1,0 +1,65 @@
+{% extends 'Company/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste</title>
+</head>
+<body>
+  <br><br><br><br><br>
+    <form method="POST">
+    {% csrf_token %}
+        <h1 align="center">Waste</h1>
+        <table align="center" cellpadding="10" border="2">
+          <tr>
+            <td>Category</td>
+            <td>
+                <select name="sel_Category" id="sel_Category">
+                    <option value="">...Select...</option>
+                    {% for i in category %}
+                    <option 
+                   
+                    value="{{i.id}}">{{i.Category_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            </tr>
+              <tr>
+                <td >Quantity</td>
+                <td><input type="text" name="txtquantity"  required ></td>
+              </tr>
+              <tr>
+              <td colspan="2" align="center">
+                <input type="submit" name="btnsubmit" value="submit">
+              </td>
+              </tr>
+        </table>
+    </form>
+
+    <table align="center" cellpadding="10" border="2">
+
+    <tr>
+      <th>S1.No</th>
+      <th>Category</th>
+      <th>Quantity</th>
+    </tr>
+     {% for i in data %}
+
+     <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.category.Category_name}}</td>
+      <td>{{i.waste_quantity}}</td>
+     </tr>
+     
+     {% endfor %}
+    </table> 
+</html>
+
+
+{% endblock content %}

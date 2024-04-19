@@ -1,0 +1,56 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewRequest</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    {% csrf_token %}
+    <table border="2" align="c<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>ViewRequest</title>
+        </head>
+        <body>
+            {% csrf_token %}
+            <table border="2" align="center" cellpadding="10">
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+                {% for i in data %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.request_date }}</td>
+                    <td>{{ i.request_amount }}</td>
+                    <td>
+                        {% if i.request_status == 1 %}
+                            Accepted
+                        {% elif i.request_status == 0 %}
+                            Pending
+                        {% else %}
+                            Rejected
+                        {% endif %}
+                    </td>
+                </tr>    
+                {% endfor %}
+            </table>
+        </body>
+        </html>
+
+
+ {% endblock content %}
+        
+            

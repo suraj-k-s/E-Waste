@@ -1,0 +1,41 @@
+{% extends 'Adminstrator/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewComplaint</title>
+</head>
+<body>
+    <table border="2" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Details</th>
+            <th>User</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.complaint_date}}</td>
+            <td>{{i.complaint_title}}</td>
+            <td>{{i.complaint_details}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td colspan="2" align="center">
+                    <a class="d-card-button" href="{% url 'Adminstrator:reply' i.id %}">Reply</a>
+                </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
+
+{% endblock content %}

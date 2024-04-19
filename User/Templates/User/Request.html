@@ -1,0 +1,39 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request</title>
+</head>
+<body>
+    <br><br><br><br><br>
+    <form method="Post" >
+        {% csrf_token %}
+        <h1 align="center">Request</h1>
+        <table align="center" cellpadding="10" border="2">
+            <tr>
+                <td>Date</td>
+                    <td><input type="Date" name="txtdate"  required ></td> 
+            </tr> 
+            <tr>
+                <td>Amount</td>
+                 <td><input type="Amount" name="txtamount" placeholder="Enter Amount" required ></td>
+                </tr> 
+                
+             <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Send">
+                    
+                </td>
+            </tr>
+            </table>
+            </form>
+</body>
+</html>
+
+{% endblock content %}
