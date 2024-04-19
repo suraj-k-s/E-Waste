@@ -19,4 +19,5 @@ urlpatterns = [
     path('Complaint/',views.complaint,name="complaint"),
 
     path('Feedback/',views.feedback,name="feedback"),
+    path('Detect/',views.Detect,name="Detect"),
 ]

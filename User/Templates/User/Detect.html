@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detected E-Waste Objects</title>
+  <script>
+    function previewImage() {
+      var preview = document.querySelector('img');
+      var file = document.querySelector('input[type=file]').files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Detected E-Waste:</h1>
+  {% if detected_e_waste %}
+    <ul>
+      {% for obj in detected_e_waste %}
+        <li>{{ obj }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No e-waste objects detected.</p>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <label for="image">Image:</label>
+    <input type="file" name="image" id="image" onchange="previewImage()">
+    <button type="submit" >Upload</button>
+  </form>
+
+  <div>
+    <h2>Preview:</h2>
+    <img src="" alt="Preview" id="preview" style="max-width: 100%; max-height: 300px;">
+  </div>
+</body>
+</html>

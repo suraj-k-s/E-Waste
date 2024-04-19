@@ -1,6 +1,73 @@
 from django.shortcuts import render,redirect
 from Guest.models import *
 from User.models import *
+from django.conf import settings
+import os
+from ultralytics import YOLO
+
+import torch
+
+
+def Detect(request):
+
+  if request.method == 'POST' and request.FILES['image']:
+    try:
+      image = request.FILES['image']
+      temp_image_path = os.path.join(settings.MEDIA_ROOT, 'temp_image.jpg')
+      with open(temp_image_path, 'wb+') as destination:
+        for chunk in image.chunks():
+          destination.write(chunk)
+      detected_e_waste = perform_detection(temp_image_path)
+      context = {'detected_e_waste': detected_e_waste}
+      return render(request, 'User/Detect.html', context)
+    except Exception as e:
+      error_message = f"An error occurred: {str(e)}"
+      return render(request, 'User/Detect.html', {'error_message': error_message})
+  return render(request, 'User/Detect.html')
+
+def perform_detection(image_path, saved_model_path="yolov8s.pt"):
+
+    yolo = YOLO(saved_model_path)
+    
+    results = yolo(image_path)
+
+    for result in results:
+        boxes = result.boxes  # Boxes object for bounding box outputs
+        masks = result.masks  # Masks object for segmentation masks outputs
+        keypoints = result.keypoints  # Keypoints object for pose outputs
+        probs = result.probs  # Probs object for classification outputs
+        # result.show()  # display to screen
+        # result.save(filename='result.jpg')  # save to disk
+        print(boxes)
+
+
+
+    # Get the names dictionary
+    names_dict = results.names
+
+    # Loop through detected objects (pseudocode)
+    for box in results.boxes:
+    # Get the class ID for the current object
+        class_id = box.get_class_id()  # Replace with the actual method to get class ID
+    
+    # Use the class ID to lookup the item name from the names dictionary
+        item_name = names_dict[class_id]
+    
+    # Do something with the item name (e.g., print it)
+        print(f"Found item: {item_name}")
+
+    detected_e_waste = []
+ 
+
+    return detected_e_waste
+
+
+
+
+
+
+
+
 
 
 def homepage(request):
