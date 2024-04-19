@@ -17,5 +17,6 @@ urlpatterns = [
     path('RequestListRejected/',views.requestListRejected,name="requestListRejected"),
 
 
+    path('Detect/',views.Detect,name="Detect"),
     path('Waste/<int:did>',views.waste,name="waste"),
 ]

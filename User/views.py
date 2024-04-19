@@ -1,46 +1,6 @@
 from django.shortcuts import render,redirect
 from Guest.models import *
 from User.models import *
-from django.conf import settings
-import os
-from ultralytics import YOLO
-
-import torch
-
-
-def Detect(request):
-
-  if request.method == 'POST' and request.FILES['image']:
-    try:
-      image = request.FILES['image']
-      temp_image_path = os.path.join(settings.MEDIA_ROOT, 'temp_image.jpg')
-      with open(temp_image_path, 'wb+') as destination:
-        for chunk in image.chunks():
-          destination.write(chunk)
-      print('-'*40)
-      detected_e_waste = perform_detection(temp_image_path)
-      context = {'detected_e_waste': detected_e_waste}
-      return render(request, 'User/Detect.html', context)
-    except Exception as e:
-      error_message = f"An error occurred: {str(e)}"
-      return render(request, 'User/Detect.html', {'error_message': error_message})
-  return render(request, 'User/Detect.html')
-
-def perform_detection(image_path, saved_model_path="yolov8s.pt"):
-    yolo = YOLO(saved_model_path)
-    results = yolo(image_path)
-
-    detected_e_waste = []
-
-    for result in results:
-        boxes = result.boxes
-
-        tensor_list = boxes.cls.tolist()
-
-        for item in tensor_list:
-            detected_e_waste.append(result.names[int(item)])
-
-    return detected_e_waste
 
 
 def homepage(request):
