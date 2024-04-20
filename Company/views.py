@@ -5,6 +5,49 @@ from Company.models import *
 from Adminstrator.models import *
 
 
+from django.conf import settings
+import os
+from ultralytics import YOLO
+
+def Detect(request):
+  if request.method == 'POST' and request.FILES['image']:
+    try:
+      image = request.FILES['image']
+      temp_image_path = os.path.join(settings.MEDIA_ROOT, 'temp_image.jpg')
+      with open(temp_image_path, 'wb+') as destination:
+        for chunk in image.chunks():
+          destination.write(chunk)
+      detected_e_waste = perform_detection(temp_image_path)
+      context = {'detected_e_waste': detected_e_waste}
+      return render(request, 'User/Detect.html', context)
+    except Exception as e:
+      error_message = f"An error occurred: {str(e)}"
+      return render(request, 'Company/Detect.html', {'error_message': error_message})
+  return render(request, 'Company/Detect.html')
+
+def perform_detection(image_path, saved_model_path="yolov8s.pt"):
+    yolo = YOLO(saved_model_path)
+    results = yolo(image_path)
+    detected_objects = []
+    
+    for result in results:
+        boxes = result.boxes
+        tensor_list = boxes.cls.tolist()
+        
+        for item in tensor_list:
+            name = result.names[int(item)]
+            found = False
+            for obj in detected_objects:
+                if obj['name'] == name:
+                    obj['count'] += 1
+                    found = True
+                    break
+            if not found:
+                detected_objects.append({'name': name, 'count': 1})
+    return detected_objects
+
+
+
 
 def homepage(request):
     return render(request,"Company/HomePage.html")
