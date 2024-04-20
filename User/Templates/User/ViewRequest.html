@@ -14,6 +14,8 @@
 <body>
     <br><br><br><br><br>
     {% csrf_token %}
+    <h1 align="center">ViewRequest</h1>
+    <br>
     <table border="2" align="c<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -37,7 +39,7 @@
                     <td>{{ i.request_amount }}</td>
                     <td>
                         {% if i.request_status == 1 %}
-                            Accepted
+                            Accepted <br>{{i.request_reply}}
                         {% elif i.request_status == 0 %}
                             Pending
                         {% else %}

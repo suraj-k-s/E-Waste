@@ -19,4 +19,9 @@ urlpatterns = [
     path('Complaint/',views.complaint,name="complaint"),
 
     path('Feedback/',views.feedback,name="feedback"),
+
+    path('logout/',views.logout,name="logout"),
+
+    path('Image/',views.image,name="image"),
+
 ]

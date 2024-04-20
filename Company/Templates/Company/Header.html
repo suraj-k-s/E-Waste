@@ -35,6 +35,16 @@ https://templatemo.com/tm-543-breezed
 
     <link rel="stylesheet" href="{% static 'form.css' %}">
 
+    <style>
+        #tab td, #tab th {
+            color: #000 !important;
+        }
+
+         #tab th {
+        background-color:  rgb(0, 128, 111) !important;
+        }
+    </style>
+
     </head>
     
     <body>
@@ -58,7 +68,7 @@ https://templatemo.com/tm-543-breezed
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            .BREEZED
+                            E-WASTE
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
@@ -68,6 +78,7 @@ https://templatemo.com/tm-543-breezed
                             <li><a href="{% url 'Company:requestlist' %}">RequestList</a></li>
                             <li><a href="{% url 'Company:requestListAccepted' %}">RequestListAccepted</a></li>
                             <li><a href="{% url 'Company:requestListRejected' %}">RequestListRejected</a></li>
+                            <li><a href="{% url 'Company:logout' %}">Logout</a></li> 
                             
                             <div class="search-icon">
                                 <a href="#search"><i class="fa fa-search"></i></a>

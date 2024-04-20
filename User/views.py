@@ -85,4 +85,16 @@ def feedback(request):
     else:
         return render(request,"User/Feedback.html",{"data":feedback})
 
- 
+def logout(request):
+    del request.session["uid"]
+    return redirect("Guest:Login")
+
+
+
+def image(request):
+    image=tbl_image.objects.all()
+    if request.method=="POST":
+        tbl_image.objects.create(image_photo=request.FILES.get("fileImage"))
+        return redirect("User:image")
+    else:
+        return render(request,"User/Image.html",{'data':image})

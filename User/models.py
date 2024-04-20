@@ -23,3 +23,6 @@ class tbl_feedback(models.Model):
     feedback_title=models.CharField(max_length=100)
     feedback_date=models.DateField(auto_now_add=True)
     feedback_details=models.CharField(max_length=1000)
+
+class tbl_image(models.Model):
+    image_photo = models.FileField(upload_to='Assets/ImagePhoto/')

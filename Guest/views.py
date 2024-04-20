@@ -62,3 +62,6 @@ def Login(request):
 
 def index(request):
     return render(request,"Guest/index.html")
+
+
+

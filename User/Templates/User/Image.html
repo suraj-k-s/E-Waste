@@ -1,0 +1,55 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image</title>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 align="center" >Image</h1>
+        <br>
+        <table align="center" cellpadding="10" border="2">
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="fileImage"  required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="btnsubmit" value="submit">
+                </td>
+                </tr>
+             </table>
+             <br>
+             <br>
+                 </form>
+                 <table border="1" align="center" cellpadding="10">     
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><img src="{{i.image_photo.url}}" width="150" height="150" alt=""></td>
+                     </tr>
+                    {% endfor %}
+            
+                </table>
+            </body>
+            </html>
+
+ {% endblock content %}

@@ -12,26 +12,27 @@
     <title>Document</title>
 </head>
 <body>
-    <br>
-    <br>
+    
     <form method="POST">
         {% csrf_token %}
-        <table algin="center">
+        <h1 align="center">Category</h1>
+        <table align="center">
             <tr>
                 <td>Category</td>
                 <td><input type="text" name="txtname" placeholder="Enter Category" required ></td>
             </tr>
             <tr>
                 
-                <td colspan="2" algin="center">
+                <td colspan="2" align="center">
                     <input type="submit" name="btnsubmit" value="Save">
                     <input type="reset" name="btncancel" value="Cancel">
                 </td>
             </tr>
         </table>
     </form>
-
-    <table border="1" algin="center" cellpadding="10">
+<br>
+<br>
+    <table border="1" align="center" cellpadding="10">
         <tr>
             <th>Sl.No</th>
             <th>Category</th>

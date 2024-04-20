@@ -35,6 +35,16 @@ https://templatemo.com/tm-543-breezed
     <link rel="stylesheet" href="{% static 'form.css' %}">
 
 
+    <style>
+        #tab td, #tab th {
+            color: #000 !important;
+        }
+        site-navbar ul li a.active {
+            color: #1c1c1b; !important;
+        }
+    </style>
+
+
     </head>
     
     <body>
@@ -58,14 +68,16 @@ https://templatemo.com/tm-543-breezed
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            .BREEZED
+                            E-WASTE
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                            <li class="scroll-to-section"><a href="{% url 'Guest:index' %}" class="active">Home</a></li>
+                        <ul class="nav" >
+                            <li class="scroll-to-section"><a href="{% url 'Guest:index' %}" class="active" style="color: #1c1c1b;">Home</a></li>
                             <li><a href="{% url 'Guest:userRegistration' %}">User</a></li>
                             <li><a href="{% url 'Guest:cmpRegistration' %}">Company</a></li>
+                            <li><a href="{% url 'Guest:Login' %}">Login</a></li>
+
                             
                             <div class="search-icon">
                                 <a href="#search"><i class="fa fa-search"></i></a>

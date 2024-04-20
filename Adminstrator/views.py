@@ -224,3 +224,6 @@ def viewfeedback(request):
     data=tbl_feedback.objects.all()
     return render(request,"Adminstrator/ViewFeedback.html",{"data":data})       
 
+def logout(request):
+    del request.session["aid"]
+    return redirect("Guest:Login")
